@@ -10,7 +10,14 @@ class Genre extends Model
     use HasFactory;
     protected $primaryKey = 'genre_id'; 
     
-    protected $fillable = ['genre_name']; 
+    protected $fillable = [
+        'genre_name'
+    ]; 
+    
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'book_genre', 'genre_id', 'book_id');
+    }
 }
 
 
