@@ -13,9 +13,9 @@ return new class extends Migration
     {
         
             Schema::create('sub_categories', function (Blueprint $table) {
-            $table->id('sub_category_id'); // Primary key
-            $table->foreignId('category_id'); // Foreign key
-            $table->string('sub_category_name');
+            $table->id(); // Primary key
+            $table->foreignId('category_id')->constraint()->onDelete('cascade'); // Foreign key
+            $table->string('name');
             $table->timestamps();
         });
         

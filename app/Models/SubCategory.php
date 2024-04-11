@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class SubCategory extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'sub_category_id';
+   
     protected $fillable = [
-        'sub_category_name',
+        'name', 
     ];
 
     public function category()
-{
-    return $this->belongsTo(Category::class, 'category_id');
-}
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }

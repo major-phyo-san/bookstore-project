@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_genres', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('book_id');
             $table->foreignId('genre_id');
             $table->timestamps();
