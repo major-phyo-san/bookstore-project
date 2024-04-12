@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    public function userOrders()
+    {
+        return $this->hasMany(UserOrder::class);
+    }
 }
