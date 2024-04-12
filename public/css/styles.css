@@ -1,0 +1,117 @@
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #ddd;
+}
+
+.sidebar ul li a.active {
+    background-color: #ccc;
+}
+
+.content {
+    padding: 20px;
+}
+
+/* Header  */
+.header {
+    display: flex;
+    justify-content: flex-end; /* Align icons to the right */
+    align-items: center;
+    padding: 10px 20px; /* Adjust as needed */
+}
+
+.icons {
+    display: flex;
+    font-size: 20px;
+}
+
+.icon {
+    margin-left: 10px; /* Adjust spacing between icons */
+    cursor: pointer; /* Optional: add pointer cursor on hover */
+}
+
+hr {
+    padding: 10px;
+}
+/* CSS styles for the search bar */
+
+.search-container input[type=text] {
+    padding: 10px;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
+.add-row {
+    text-align: right; /* Align the button to the right */
+}
+
+/* Center the table within its container */
+.table-container {
+    text-align: center;
+}
+
+/* Center align text content in table headers */
+/* .table th,
+.table td {
+    text-align: center;
+} */
+
+/* Style for the modal */
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-body {
+    padding: 20px;
+}
