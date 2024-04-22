@@ -24,6 +24,7 @@
 
                         <div class="mb-3">
                             @yield("body-content")
+                            @yield("categories-content")
                         </div>
                     </div>
                 </div>
