@@ -5,7 +5,7 @@
             <li><a href="#">Manage Books</a></li>
             <li><a href="#">Manage Orders</a></li>
             <li><a href="#">Manage Users</a></li>
-            <li><a href="../categories/index.blade.php">Manage Categories</a></li>
+            <li><a href="#">Manage Categories</a></li>
             <li><a href="#">Manage Authors</a></li>
             <li><a href="#">Manage Discounts</a></li>
             <li><a href="#">Customers Management</a></li>

@@ -21,6 +21,6 @@ Route::get('/management', function () {
     return view('management.index');
 });
 
-Route::get('/management/categories', function () {
-    return view('management.categories.index');
+Route::get('/management/books', function () {
+    return view('management.books.index');
 });
