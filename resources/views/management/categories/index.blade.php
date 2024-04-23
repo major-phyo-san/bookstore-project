@@ -1,4 +1,4 @@
- @extends('management.layouts.master')
+@extends('management.layouts.master')
 
 @section('categories-content')
     <!-- Search bar -->
@@ -23,7 +23,7 @@
         <table class="table" id="categoryTable">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Title</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -47,7 +47,7 @@
                         <td colspan="2">
                             <form action="{{ route('management.categories.update', $category->id) }}" method="POST" class="edit-form">
                                 @csrf
-                                @method('PUT')
+                                @method('PATCH')
                                 <input type="text" name="name" value="{{ $category->name }}">
                                 <button type="submit" class="btn btn-sm btn-success">Save</button>
                                 <button type="button" class="btn btn-sm btn-secondary" onclick="hideEditForm({{ $category->id }})">Cancel</button>
@@ -58,9 +58,6 @@
             </tbody>
 
         </table>
-        <script>
-
-        </script>
 
         <!-- Add Category Modal -->
         <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">

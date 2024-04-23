@@ -73,10 +73,6 @@
                     <form id="addBookForm">
                         @csrf
                         <div class="form-group">
-                            <label for="bookid">Book ID</label>
-                            <input type="text" class="form-control" id="bookid" required />
-                        </div>
-                        <div class="form-group">
                             <label for="title">Title</label>
                             <input type="text" class="form-control" id="title" required />
                         </div>
