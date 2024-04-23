@@ -5,7 +5,7 @@
     <h1>Edit Category</h1>
     
     <!-- Edit Category Form -->
-    <form action="{{ route('management.books.categories.update', $category->id) }}" method="POST">
+    <form action="{{ route('management.categories.update', $category->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
