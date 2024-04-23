@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="add-row">
-            <button type="button" class="btn btn-primary" id="addButton" data-toggle="modal" data-target="#addBookModal">
+            <button type="button" class="btn btn-primary" id="addButton">
                 <i class="fa fa-plus"></i>
             </button>
         </div>
@@ -22,7 +22,7 @@
         <table class="table" id="bookTable">
             <thead>
                 <tr>
-                    <th>Book ID</th> 
+                    <th>Book ID</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Category</th>
@@ -37,7 +37,7 @@
                     <td>John</td>
                     <td>Fiction</td>
                     <td>
-                        <button class="btn btn-sm btn-primary edit-btn" data-toggle="modal" data-target="#editBookModal" data-book-id="1"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
@@ -47,7 +47,7 @@
                     <td>Susan</td>
                     <td>Romance</td>
                     <td>
-                        <button class="btn btn-sm btn-primary edit-btn" data-toggle="modal" data-target="#editBookModal" data-book-id="2"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
@@ -57,33 +57,53 @@
                     <td>Andrew</td>
                     <td>Action</td>
                     <td>
-                        <button class="btn btn-sm btn-primary edit-btn" data-toggle="modal" data-target="#editBookModal" data-book-id="3"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
-    
 
     <!-- Add Book Modal -->
     <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel" aria-hidden="true">
-        <!-- Modal content -->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- Form for adding a new book will go here -->
+                    <form id="addBookForm">
+                        @csrf
+                        <div class="form-group">
+                            <label for="bookid">Book ID</label>
+                            <input type="text" class="form-control" id="bookid" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <input type="text" class="form-control" id="author" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                                <select class="form-control" id="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="fiction">Fiction</option>
+                                    <option value="romance">Romance</option>
+                                    <option value="fantasy">Fantasy</option>
+                                    <option value="action">Action</option>
+                                    <option value="education">Education</option>
+                                    <option value="health">Health</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Edit Book Modal -->
-    <div class="modal fade" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="editBookModalLabel" aria-hidden="true">
-        <!-- Modal content -->
     </div>
-
-    <script>
-        $(document).ready(function () {
-            $('.edit-btn').click(function () {
-                var bookId = $(this).data('book-id');
-                $.get('/books/' + bookId, function (data) {
-                    $('#editBookModal .modal-content').html(data);
-                });
-            });
-        });
-    </script>
 @endsection
