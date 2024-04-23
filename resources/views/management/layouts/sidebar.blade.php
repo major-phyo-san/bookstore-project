@@ -2,8 +2,8 @@
     <div class="position-sticky">
         <h2>Admin Panel</h2>
         <ul class="nav flex-column">
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Sub Categories</a></li>
+            <li><a href="{{ route('management.categories.index') }}">Categories</a></li>
+            <li><a href="{{ route('management.subcategories.index') }}">Sub Categories</a></li>
             <li><a href="#">Genres</a></li>
             <li><a href="#">Books</a></li>
 
