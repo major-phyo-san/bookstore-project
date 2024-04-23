@@ -10,6 +10,7 @@ document.getElementById("addButton").addEventListener("click", function() {
     // Display the modal
     $('#addBookModal').modal('show');
     $('#addCategoryModal').modal('show');
+    $('#addSubCategoryModal').modal('show');
 });
 
 // delete button click
@@ -72,6 +73,33 @@ document.getElementById("addCategoryForm").addEventListener('submit', function(e
     $('#addCategoryModal').modal('hide');
     // Reset the form fields
     document.getElementById("addCategoryForm").reset();
+    newRow.querySelector(".edit-btn").addEventListener("click", function() {
+        // Handle edit button click
+        console.log("Edit button clicked");
+    });
+    // Attach event listener to the delete button in the new row
+    attachDeleteButtonListener(newRow.querySelector('.delete-btn'));
+
+});
+
+
+// form for sub category
+document.getElementById("addSubCategoryForm").addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Collect form data
+    var name = document.getElementById("name").value;
+    var category = document.getElementById("category").value;
+    // Add the new book data to the table
+    var newRow = document.getElementById("tableBody").insertRow();
+    newRow.innerHTML = "<td>" + name + "</td><td>" + category + "</td><td>" +
+                        "<button class='btn btn-sm btn-primary edit-btn'><i class='fa fa-edit'></i></button> " +
+                        "<button class='btn btn-sm btn-danger delete-btn'><i class='fa fa-trash'></i></button>" +
+                        "</td>";
+
+    // Hide the modal
+    $('#addSubCategoryModal').modal('hide');
+    // Reset the form fields
+    document.getElementById("addSubCategoryForm").reset();
     newRow.querySelector(".edit-btn").addEventListener("click", function() {
         // Handle edit button click
         console.log("Edit button clicked");

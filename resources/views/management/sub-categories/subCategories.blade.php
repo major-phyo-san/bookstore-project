@@ -1,6 +1,6 @@
 @extends('management.layouts.master')
 
-@section('categories-content')
+@section('sub-categories-content')
     <!-- Search bar -->
     <div class="mb-3">
         <div class="input-group col-3">
@@ -19,16 +19,18 @@
     </div>
     <!-- Table container -->
     <div class="table-container">
-        <table class="table" id="categoryTable">
+        <table class="table" id="subCategoryTable">
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
                 <!-- Book data will be dynamically populated here -->
                 <tr>
+                    <td>English</td>
                     <td>Education</td>
                     <td>
                         <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
@@ -36,6 +38,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Exercises</td>
                     <td>Health</td>
                     <td>
                         <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
@@ -43,6 +46,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Romance</td>
                     <td>Novel</td>
                     <td>
                         <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
@@ -52,20 +56,30 @@
             </tbody>
         </table>
 
-        <!-- Add Category Modal -->
-        <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+        <!-- Add Sub Category Modal -->
+        <div class="modal fade" id="addSubCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <!-- Form for adding a new category will go here -->
-                        <form id="addCategoryForm" action="{{ route('management.books.categories.store') }}" method="POST">
+                        <!-- Form for adding a new sub category will go here -->
+                        <form id="addSubCategoryForm">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" required />
                             </div>
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <select class="form-control" id="category" required>
+                                    <option value="">Select Category</option>
+                                    <option value="fiction">Novel</option>
+                                    <option value="education">Education</option>
+                                    <option value="health">Health</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">
-                                Add Category
+                                Add Sub Category
                             </button>
                         </form>
                     </div>
