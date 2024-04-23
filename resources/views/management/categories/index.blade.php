@@ -47,7 +47,7 @@
                         <td colspan="2">
                             <form action="{{ route('management.categories.update', $category->id) }}" method="POST" class="edit-form">
                                 @csrf
-                                @method('PATCH')
+                                @method('PUT')
                                 <input type="text" name="name" value="{{ $category->name }}">
                                 <button type="submit" class="btn btn-sm btn-success">Save</button>
                                 <button type="button" class="btn btn-sm btn-secondary" onclick="hideEditForm({{ $category->id }})">Cancel</button>
