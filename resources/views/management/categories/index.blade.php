@@ -27,28 +27,21 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <!-- Book data will be dynamically populated here -->
-                <tr>
-                    <td>Education</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Health</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Novel</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
+                @foreach ($categories as $category) <!-- Loop through categories -->
+                    <tr>
+                        <td>{{ $category->name }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
+                            <form action="{{ route('management.categories.destroy', $category->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this category?')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>    
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
 
@@ -62,7 +55,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" required />
+                                <input type="text" class="form-control" id="name" name="name" required />
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 Add Category
@@ -73,6 +66,7 @@
             </div>
         </div>
     </div>
+@endsection
 
     {{-- <!-- Category List -->
     <ul class="list-group">
@@ -93,4 +87,3 @@
         @endforeach
     </ul> --}}
 
-@endsection

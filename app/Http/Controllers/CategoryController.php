@@ -10,22 +10,24 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('management.categories.categories', compact('categories'));
+        return view('management.categories.index', compact('categories'));
     }
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:categories',
         ]);
 
         // Category::create($validatedData);
         $category = new Category();
-        $category->name = $validatedData->name;
+        $category->name = $validatedData['name']; // Use array syntax to access the 'name' key
         $category->save();
-
-        return redirect()->route('management.categories.categories')
+        
+        return redirect()->route('management.categories.index')
                          ->with('success', 'Category created successfully.');
+        
     }
 
     public function update(Request $request, Category $category)
@@ -36,15 +38,16 @@ class CategoryController extends Controller
 
         $category->update($validatedData);
 
-        return redirect()->route('management.categories.categories')
+        return redirect()->route('management.categories.index')
                          ->with('success', 'Category updated successfully.');
     }
 
     public function destroy(Category $category)
-    {
+    {   
+        dd($category);
         $category->delete();
-
-        return redirect()->route('management.categories.categories')
+        dd($category);
+        return redirect()->route('management.categories.index')
                          ->with('success', 'Category deleted successfully.');
     }
 }
