@@ -13,6 +13,20 @@ document.getElementById("addButton").addEventListener("click", function() {
     $('#addSubCategoryModal').modal('show');
 });
 
+// delete button click
+function deleteButtonClick(event) {
+    // Get the parent row of the delete button
+    var row = event.target.closest('tr');
+    // Remove the row from the table
+    row.remove();
+}
+// Function to attach event listener to delete button
+function attachDeleteButtonListener(button) {
+    button.addEventListener('click', deleteButtonClick);
+}
+// Attach event listeners to delete buttons
+document.querySelectorAll('.delete-btn').forEach(attachDeleteButtonListener);
+
 
 // form for book
 document.getElementById("addBookForm").addEventListener("submit", function(event) {
@@ -37,6 +51,8 @@ document.getElementById("addBookForm").addEventListener("submit", function(event
         // Handle edit button click
         console.log("Edit button clicked");
     });
+    // Attach event listener to the delete button in the new row
+    attachDeleteButtonListener(newRow.querySelector('.delete-btn'));
 
 });
 
@@ -61,6 +77,8 @@ document.getElementById("addCategoryForm").addEventListener('submit', function(e
         // Handle edit button click
         console.log("Edit button clicked");
     });
+    // Attach event listener to the delete button in the new row
+    attachDeleteButtonListener(newRow.querySelector('.delete-btn'));
 
 });
 
@@ -86,5 +104,7 @@ document.getElementById("addSubCategoryForm").addEventListener('submit', functio
         // Handle edit button click
         console.log("Edit button clicked");
     });
+    // Attach event listener to the delete button in the new row
+    attachDeleteButtonListener(newRow.querySelector('.delete-btn'));
 
 });
