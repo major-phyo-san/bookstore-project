@@ -29,6 +29,11 @@ class CategoryController extends Controller
                          ->with('success', 'Category created successfully.');
         
     }
+    
+    public function edit(Category $category)
+    {
+        return view('management.categories.edit', compact('category'));
+    }
 
     public function update(Request $request, Category $category)
     {
@@ -44,9 +49,8 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {   
-        dd($category);
         $category->delete();
-        dd($category);
+
         return redirect()->route('management.categories.index')
                          ->with('success', 'Category deleted successfully.');
     }
