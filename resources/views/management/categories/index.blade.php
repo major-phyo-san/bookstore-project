@@ -58,7 +58,7 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <!-- Form for adding a new category will go here -->
-                        <form id="addCategoryForm" action="{{ route('management.books.categories.store') }}" method="POST">
+                        <form id="addCategoryForm" action="{{ route('management.categories.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>

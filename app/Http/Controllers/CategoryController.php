@@ -10,12 +10,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('management.books.categories', compact('categories'));
-    }
-
-    public function create()
-    {
-        return view('management.books.categories.create');
+        return view('management.categories.categories', compact('categories'));
     }
 
     public function store(Request $request)
@@ -24,15 +19,13 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255|unique:categories',
         ]);
 
-        Category::create($validatedData);
+        // Category::create($validatedData);
+        $category = new Category();
+        $category->name = $validatedData->name;
+        $category->save();
 
-        return redirect()->route('management.books.categories.index')
+        return redirect()->route('management.categories.categories')
                          ->with('success', 'Category created successfully.');
-    }
-
-    public function edit(Category $category)
-    {
-        return view('management.books.edit', compact('category'));
     }
 
     public function update(Request $request, Category $category)
@@ -43,7 +36,7 @@ class CategoryController extends Controller
 
         $category->update($validatedData);
 
-        return redirect()->route('management.books.categories.index')
+        return redirect()->route('management.categories.categories')
                          ->with('success', 'Category updated successfully.');
     }
 
@@ -51,7 +44,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('management.books.categories.index')
+        return redirect()->route('management.categories.categories')
                          ->with('success', 'Category deleted successfully.');
     }
 }
