@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\SubCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,4 +34,14 @@ Route::prefix('management')->name('management.')->group(function () {
         Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('destroy');
     });
 });
+
+Route::prefix('management')->name('management.')->group(function () {
+    Route::prefix('subcategories')->name('subcategories.')->group(function () {
+        Route::get('/', [SubCategoryController::class, 'index'])->name('index');
+        Route::post('/', [SubCategoryController::class, 'store'])->name('store');
+        Route::put('/{subCategory}', [SubCategoryController::class, 'update'])->name('update');
+        Route::delete('/{subCategory}', [SubCategoryController::class, 'destroy'])->name('destroy');
+    });
+});
+
 
