@@ -24,9 +24,12 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255|unique:categories',
         ]);
 
-        Category::create($validatedData);
+        // Category::create($validatedData);
+        $category = new Category();
+        $category->name = $validatedData->name;
+        $category->save();
 
-        return redirect()->route('management.books.categories.index')
+        return redirect()->back('management.books.categories')
                          ->with('success', 'Category created successfully.');
     }
 
