@@ -1,4 +1,4 @@
-@extends('management.layouts.master')
+ @extends('management.layouts.master')
 
 @section('categories-content')
     <!-- Search bar -->
@@ -47,7 +47,8 @@
                         <td colspan="2">
                             <form action="{{ route('management.categories.update', $category->id) }}" method="POST" class="edit-form">
                                 @csrf
-                                @method('PATCH')
+                                @method('PUT')
+
                                 <input type="text" name="name" value="{{ $category->name }}">
                                 <button type="submit" class="btn btn-sm btn-success">Save</button>
                                 <button type="button" class="btn btn-sm btn-secondary" onclick="hideEditForm({{ $category->id }})">Cancel</button>
@@ -58,6 +59,10 @@
             </tbody>
 
         </table>
+        <script>
+
+        </script>
+
 
         <!-- Add Category Modal -->
         <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
@@ -81,23 +86,3 @@
         </div>
     </div>
 @endsection
-
-    {{-- <!-- Category List -->
-    <ul class="list-group">
-        @foreach ($categories as $category)
-            <li class="list-group-item">
-                {{ $category->name }}
-                <div class="float-right">
-                    <!-- Edit Button -->
-                    <a href="{{ route('management.books.categories.edit', $category->id) }}" class="btn btn-sm btn-info">Edit</a>
-                    <!-- Delete Button -->
-                    <form action="{{ route('management.books.categories.destroy', $category->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
-                    </form>
-                </div>
-            </li>
-        @endforeach
-    </ul> --}}
-

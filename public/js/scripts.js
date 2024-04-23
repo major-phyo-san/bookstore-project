@@ -97,3 +97,13 @@ document.getElementById("addSubCategoryForm").addEventListener('submit', functio
     });
 
 });
+
+function showEditForm(categoryId) {
+    var editFormRow = document.getElementById('editFormRow' + categoryId);
+    editFormRow.style.display = 'table-row';
+}
+
+function hideEditForm(categoryId) {
+    var editFormRow = document.getElementById('editFormRow' + categoryId);
+    editFormRow.style.display = 'none';
+}
