@@ -1,20 +1,80 @@
 @extends('management.layouts.master')
 
 @section('categories-content')
-<div class="container">
-    <h1>Categories</h1>
-    
-    <!-- Add Category Form -->
-    <form action="{{ route('management.books.categories.store') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="category_name">Category Name:</label>
-            <input type="text" name="name" id="category_name" class="form-control" required>
+    <!-- Search bar -->
+    <div class="mb-3">
+        <div class="input-group col-3">
+            <input type="text" class="form-control" id="searchInput" placeholder="Search..." />
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" onclick="search()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add Category</button>
-    </form>
+        <div class="add-row">
+            <button type="button" class="btn btn-primary" id="addButton">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Table container -->
+    <div class="table-container">
+        <table class="table" id="categoryTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Book data will be dynamically populated here -->
+                <tr>
+                    <td>Education</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Health</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Novel</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-    <!-- Category List -->
+        <!-- Add Category Modal -->
+        <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Form for adding a new category will go here -->
+                        <form id="addCategoryForm" action="{{ route('management.books.categories.store') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" required />
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Add Category
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <!-- Category List -->
     <ul class="list-group">
         @foreach ($categories as $category)
             <li class="list-group-item">
@@ -31,6 +91,6 @@
                 </div>
             </li>
         @endforeach
-    </ul>
-</div>
+    </ul> --}}
+
 @endsection

@@ -13,7 +13,7 @@
         </div>
         <div class="add-row">
             <button type="button" class="btn btn-primary" id="addButton">
-                <i class="fa fa-plus"> Add</i>
+                <i class="fa fa-plus"></i>
             </button>
         </div>
     </div>
@@ -67,6 +67,7 @@
                     <div class="modal-body">
                         <!-- Form for adding a new book will go here -->
                         <form id="addBookForm">
+                            @csrf
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" id="title" required />
