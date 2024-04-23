@@ -60,24 +60,24 @@
             </tbody>
         </table>
 
-        <!-- Add Book Modal -->
-        <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!-- Form for adding a new book will go here -->
-                        <form id="addBookForm">
-                            @csrf
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="author">Author</label>
-                                <input type="text" class="form-control" id="author" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="category">Category</label>
+    <!-- Add Book Modal -->
+    <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- Form for adding a new book will go here -->
+                    <form id="addBookForm">
+                        @csrf
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <input type="text" class="form-control" id="author" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
                                 <select class="form-control" id="category" required>
                                     <option value="">Select Category</option>
                                     <option value="fiction">Fiction</option>
@@ -88,14 +88,14 @@
                                     <option value="health">Health</option>
                                     <!-- Add more options as needed -->
                                 </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                Submit
-                            </button>
-                        </form>
-                    </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

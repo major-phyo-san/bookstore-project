@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{ $category->name }}</td>
                         <td>
-                            <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-sm btn-primary edit-btn" onclick="showEditForm({{ $category->id }})"><i class="fa fa-edit"></i></button>
 
                             <form action="{{ route('management.categories.destroy', $category->id) }}" method="POST" class="d-inline">
                                 @csrf
@@ -43,41 +43,24 @@
                             </form>
                         </td>
                     </tr>
+                    <tr id="editFormRow{{ $category->id }}" style="display: none;">
+                        <td colspan="2">
+                            <form action="{{ route('management.categories.update', $category->id) }}" method="POST" class="edit-form">
+                                @csrf
+                                @method('PATCH')
+                                <input type="text" name="name" value="{{ $category->name }}">
+                                <button type="submit" class="btn btn-sm btn-success">Save</button>
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="hideEditForm({{ $category->id }})">Cancel</button>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
 
         </table>
+        <script>
 
-        {{-- <ul class="list-group">
-            <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center font-weight-bold">
-                <span>Name</span>
-                <span>Actions</span>
-            </li>
-            @foreach ($categories as $category)
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span>{{ $category->name }}</span>
-                    <div>
-                        <!-- Edit Button -->
-
-                        {{-- <button class="btn btn-sm btn-primary edit-btn" onclick="window.location='{{ route('management.categories.edit', $category->id) }}';">
-                            <i class="fa fa-edit"></i>
-                        </button> --}}
-                        {{-- <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-
-                        <!-- Delete Button -->
-                        <form action="{{ route('management.categories.destroy', $category->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this category?')">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
-                </li>
-            @endforeach
-        </ul> --}}
-
-
+        </script>
 
         <!-- Add Category Modal -->
         <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">

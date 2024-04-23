@@ -27,13 +27,6 @@ class CategoryController extends Controller
         $category->name = $validatedData['name'];
         $category->save();
         return redirect()->route('management.categories.index')
-
-        // Category::create($validatedData);
-        $category = new Category();
-        $category->name = $validatedData['name']; // Use array syntax to access the 'name' key
-        $category->save();
-
-        return redirect()->route('management.categories.index')
                          ->with('success', 'Category created successfully.');
 
     }

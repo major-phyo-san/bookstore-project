@@ -63,6 +63,15 @@ document.getElementById("addCategoryForm").addEventListener('submit', function(e
     });
 
 });
+function showEditForm(categoryId) {
+    var editFormRow = document.getElementById('editFormRow' + categoryId);
+    editFormRow.style.display = 'table-row';
+}
+
+function hideEditForm(categoryId) {
+    var editFormRow = document.getElementById('editFormRow' + categoryId);
+    editFormRow.style.display = 'none';
+}
 
 
 // form for sub category
