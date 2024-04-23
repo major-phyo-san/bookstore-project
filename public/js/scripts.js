@@ -1,4 +1,4 @@
-function search() {
+  function search() {
     var input = document.getElementById('searchInput').value;
     // Perform search functionality here based on the input value
     console.log('Searching for:', input);
