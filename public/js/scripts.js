@@ -13,6 +13,13 @@ document.getElementById("addButton").addEventListener("click", function() {
     $('#addSubCategoryModal').modal('show');
 });
 
+// $(document).ready(function() {
+//     $('.edit-btn').click(function() {
+//         var modalId = $(this).attr('data-target');
+//         $(modalId).modal('show');
+//     });
+// });
+
 
 // form for book
 document.getElementById("addBookForm").addEventListener("submit", function(event) {
@@ -63,14 +70,13 @@ document.getElementById("addCategoryForm").addEventListener('submit', function(e
     });
 
 });
-function showEditForm(categoryId) {
-    var editFormRow = document.getElementById('editFormRow' + categoryId);
-    editFormRow.style.display = 'table-row';
+// Function to show the edit modal
+ function showEditModal(categoryId) {
+    $('#editModal' + categoryId).modal('show'); // Show the modal
 }
 
-function hideEditForm(categoryId) {
-    var editFormRow = document.getElementById('editFormRow' + categoryId);
-    editFormRow.style.display = 'none';
+function hideEditModal(categoryId) {
+    $('#editModal' + categoryId).modal('hide'); // Hide the modal
 }
 
 
@@ -98,12 +104,4 @@ document.getElementById("addSubCategoryForm").addEventListener('submit', functio
 
 });
 
-function showEditForm(categoryId) {
-    var editFormRow = document.getElementById('editFormRow' + categoryId);
-    editFormRow.style.display = 'table-row';
-}
 
-function hideEditForm(categoryId) {
-    var editFormRow = document.getElementById('editFormRow' + categoryId);
-    editFormRow.style.display = 'none';
-}
