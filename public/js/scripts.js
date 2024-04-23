@@ -98,3 +98,11 @@ function hideEditForm(categoryId) {
     var editFormRow = document.getElementById('editFormRow' + categoryId);
     editFormRow.style.display = 'none';
 }
+// Function to show the edit modal
+function showEditModal(categoryId) {
+    $('#editModal' + categoryId).modal('show'); // Show the modal
+}
+
+function hideEditModal(categoryId) {
+    $('#editModal' + categoryId).modal('hide'); // Hide the modal
+}
