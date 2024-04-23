@@ -26,6 +26,7 @@ Route::get('/management/books', function () {
     return view('management.books.index');
 });
 
+
 Route::prefix('management')->name('management.')->group(function () {
     Route::prefix('categories')->name('categories.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');

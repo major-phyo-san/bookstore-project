@@ -17,6 +17,7 @@
             </button>
         </div>
     </div>
+
     <!-- Table container -->
     <div class="table-container">
         <table class="table" id="categoryTable">
@@ -32,17 +33,19 @@
                         <td>{{ $category->name }}</td>
                         <td>
                             <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
+
                             <form action="{{ route('management.categories.destroy', $category->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this category?')">
                                     <i class="fa fa-trash"></i>
                                 </button>
-                            </form>    
+                            </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
+
         </table>
 
         {{-- <ul class="list-group">
@@ -55,11 +58,12 @@
                     <span>{{ $category->name }}</span>
                     <div>
                         <!-- Edit Button -->
+
                         {{-- <button class="btn btn-sm btn-primary edit-btn" onclick="window.location='{{ route('management.categories.edit', $category->id) }}';">
                             <i class="fa fa-edit"></i>
                         </button> --}}
                         {{-- <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                        
+
                         <!-- Delete Button -->
                         <form action="{{ route('management.categories.destroy', $category->id) }}" method="POST" class="d-inline">
                             @csrf
@@ -67,11 +71,12 @@
                             <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this category?')">
                                 <i class="fa fa-trash"></i>
                             </button>
-                        </form>                
+                        </form>
                     </div>
                 </li>
             @endforeach
-        </ul> --}} 
+        </ul> --}}
+
 
 
         <!-- Add Category Modal -->
