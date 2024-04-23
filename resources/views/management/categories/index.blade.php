@@ -59,10 +59,6 @@
             </tbody>
 
         </table>
-        <script>
-
-        </script>
-
 
         <!-- Add Category Modal -->
         <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
