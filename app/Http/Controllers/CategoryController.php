@@ -23,25 +23,21 @@ class CategoryController extends Controller
     // Store a newly created category in the database
     public function store(Request $request)
     {
-        // dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:categories',
         ]);
-<<<<<<< Updated upstream
-
-        Category::create($validatedData);
-
-        return redirect()->route('management.books.categories.index')
-=======
         // dd($validatedData);
+    
+        // Create a new category instance
         $category = new Category();
         $category->name = $validatedData['name'];
         $category->save();
-
+    
+        // Redirect to the index route after successfully storing the category
         return redirect()->route('management.categories.index')
->>>>>>> Stashed changes
                          ->with('success', 'Category created successfully.');
     }
+    
 
     // Show the form for editing the specified category
     public function edit(Category $category)
