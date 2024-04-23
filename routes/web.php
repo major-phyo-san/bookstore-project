@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\SubCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,11 +26,23 @@ Route::get('/management/books', function () {
     return view('management.books.index');
 });
 
-Route::prefix('management/categories')->name('management.categories.')->group(function () {
-    Route::get('/', [CategoryController::class, 'index'])->name('index'); // lists all categories
-    Route::get('/create', [CategoryController::class, 'create'])->name('create'); // shows form to create a new category
-    Route::post('/', [CategoryController::class, 'store'])->name('store'); // stores new category
-    Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('edit'); // shows edit form
-    Route::put('/{category}', [CategoryController::class, 'update'])->name('update'); // updates a category
-    Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('destroy'); // deletes a category
+
+Route::prefix('management')->name('management.')->group(function () {
+    Route::prefix('categories')->name('categories.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::post('/', [CategoryController::class, 'store'])->name('store');
+        Route::put('/{category}', [CategoryController::class, 'update'])->name('update');
+        Route::delete('/{category}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
 });
+
+Route::prefix('management')->name('management.')->group(function () {
+    Route::prefix('subcategories')->name('subcategories.')->group(function () {
+        Route::get('/', [SubCategoryController::class, 'index'])->name('index');
+        Route::post('/', [SubCategoryController::class, 'store'])->name('store');
+        Route::put('/{subCategory}', [SubCategoryController::class, 'update'])->name('update');
+        Route::delete('/{subCategory}', [SubCategoryController::class, 'destroy'])->name('destroy');
+    });
+});
+
+

@@ -12,12 +12,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         return view('management.categories.index', compact('categories'));
-    }
 
-    // Show the form for creating a new category
-    public function create()
-    {
-        return view('management.categories.create');
     }
 
     // Store a newly created category in the database
@@ -27,23 +22,22 @@ class CategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:categories',
         ]);
-<<<<<<< Updated upstream
-
-        Category::create($validatedData);
-
-        return redirect()->route('management.books.categories.index')
-=======
         // dd($validatedData);
         $category = new Category();
         $category->name = $validatedData['name'];
         $category->save();
+        return redirect()->route('management.categories.index')
+
+        // Category::create($validatedData);
+        $category = new Category();
+        $category->name = $validatedData['name']; // Use array syntax to access the 'name' key
+        $category->save();
 
         return redirect()->route('management.categories.index')
->>>>>>> Stashed changes
                          ->with('success', 'Category created successfully.');
+
     }
 
-    // Show the form for editing the specified category
     public function edit(Category $category)
     {
         return view('management.categories.edit', compact('category'));
