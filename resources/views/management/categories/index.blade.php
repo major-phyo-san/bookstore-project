@@ -17,7 +17,7 @@
             </button>
         </div>
     </div>
-    {{-- <!-- Table container -->
+    <!-- Table container -->
     <div class="table-container">
         <table class="table" id="categoryTable">
             <thead>
@@ -43,9 +43,9 @@
                     </tr>
                 @endforeach
             </tbody>
-        </table> --}}
+        </table>
 
-        <ul class="list-group">
+        {{-- <ul class="list-group">
             <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center font-weight-bold">
                 <span>Name</span>
                 <span>Actions</span>
@@ -58,7 +58,7 @@
                         {{-- <button class="btn btn-sm btn-primary edit-btn" onclick="window.location='{{ route('management.categories.edit', $category->id) }}';">
                             <i class="fa fa-edit"></i>
                         </button> --}}
-                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
+                        {{-- <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
                         
                         <!-- Delete Button -->
                         <form action="{{ route('management.categories.destroy', $category->id) }}" method="POST" class="d-inline">
@@ -71,7 +71,7 @@
                     </div>
                 </li>
             @endforeach
-        </ul>
+        </ul> --}} 
 
 
         <!-- Add Category Modal -->
