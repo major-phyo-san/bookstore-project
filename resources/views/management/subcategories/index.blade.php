@@ -17,7 +17,7 @@
             </button>
         </div>
     </div>
-    <!-- Table container -->
+    {{-- <!-- Table container -->
     <div class="table-container">
         <table class="table" id="subCategoryTable">
             <thead>
@@ -54,9 +54,75 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> --}}
 
-        <!-- Add Sub Category Modal -->
+    <!-- Table container -->
+    <div class="table-container">
+        <table class="table" id="subcategoryTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                @foreach ($subcategories as $subcategory) <!-- Loop through subcategories -->
+                    <tr>
+                        <td>{{ $subcategory->name }}</td>
+                        <td>{{ $subcategory->category->name }}</td> <!-- Assuming subcategory belongs to a category -->
+                        <td>
+                            <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
+                            <form action="{{ route('management.subcategories.destroy', $subcategory->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this subcategory?')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>    
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Add Sub Category Modal -->
+<div class="modal fade" id="addSubCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- Form for adding a new sub category -->
+                <form id="addSubCategoryForm"  action="{{ route('management.subcategories.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                     <!-- Empty option for "Select Category" -->
+                            <select class="form-control" id="category" name="category_id"required>
+                                <option value="">Select Category</option>
+                                <option value="fiction">Novel</option>
+                                <option value="education">Education</option>
+                                <option value="health">Health</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Add Sub Category
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        {{-- <!-- Add Sub Category Modal -->
         <div class="modal fade" id="addSubCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -85,8 +151,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> 
+    </div>--}
 
     {{-- <!-- Category List -->
     <ul class="list-group">
