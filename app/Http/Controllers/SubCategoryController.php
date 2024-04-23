@@ -17,17 +17,19 @@ class SubCategoryController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+        dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:sub_categories',
+            'category_id' => 'required|exists:categories,id'
         ]);
 
         $subCategory = new SubCategory();
         $subCategory->name = $validatedData['name'];
+        $subCategory->category_id = $validatedData['category_id'];
         $subCategory->save();
 
-        return redirect()->route('management.subcategories.index')
-                         ->with('success', 'Subcategory created successfully.');
+        return redirect()->route('management.subcategories.index')->with('success', 'Subcategory created successfully.');
     }
     
     public function edit(SubCategory $subCategory)

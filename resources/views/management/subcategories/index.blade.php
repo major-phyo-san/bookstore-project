@@ -17,9 +17,10 @@
             </button>
         </div>
     </div>
-    {{-- <!-- Table container -->
+
+    <!-- Table container -->
     <div class="table-container">
-        <table class="table" id="subCategoryTable">
+        <table class="table" id="subcategoryTable">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -28,7 +29,7 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <!-- Book data will be dynamically populated here -->
+                <!-- Static rows for sample categories -->
                 <tr>
                     <td>English</td>
                     <td>Education</td>
@@ -45,72 +46,44 @@
                         <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
-                <tr>
-                    <td>Romance</td>
-                    <td>Novel</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table> --}}
-
-    <!-- Table container -->
-    <div class="table-container">
-        <table class="table" id="subcategoryTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                @foreach ($subcategories as $subcategory) <!-- Loop through subcategories -->
+                <!-- Dynamic rows for subcategories -->
+                @foreach ($subcategories as $subcategory)
                     <tr>
                         <td>{{ $subcategory->name }}</td>
-                        <td>{{ $subcategory->category->name }}</td> <!-- Assuming subcategory belongs to a category -->
+                        <td>{{ $subcategory->category->name }}</td>
                         <td>
                             <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                            <form action="{{ route('management.subcategories.destroy', $subcategory->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this subcategory?')">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>    
+                            <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
-
-    <!-- Add Sub Category Modal -->
+    
+<!-- Add Sub Category Modal -->
 <div class="modal fade" id="addSubCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <!-- Form for adding a new sub category -->
+                <!-- Form for adding a new subcategory -->
                 <form id="addSubCategoryForm"  action="{{ route('management.subcategories.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" required />
+                        <input type="text" class="form-control" id="name" name="name" required />
                     </div>
                     <div class="form-group">
                         <label for="category">Category</label>
-                     <!-- Empty option for "Select Category" -->
-                            <select class="form-control" id="category" name="category_id"required>
-                                <option value="">Select Category</option>
-                                <option value="fiction">Novel</option>
-                                <option value="education">Education</option>
-                                <option value="health">Health</option>
-                                <!-- Add more options as needed -->
-                            </select>
-                        
+                        <!-- Dropdown for selecting the category -->
+                        <select class="form-control" id="category" name="category_id" required>
+                            <option value="">Select Category</option>
+                            <!-- Static options -->
+                            <option value="fiction">Novel</option>
+                            <option value="education">Education</option>
+                            <option value="health">Health</option>
+                            <!-- Add dynamic options here if needed -->
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         Add Sub Category
@@ -121,38 +94,6 @@
     </div>
 </div>
 
-
-        {{-- <!-- Add Sub Category Modal -->
-        <div class="modal fade" id="addSubCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!-- Form for adding a new sub category will go here -->
-                        <form id="addSubCategoryForm">
-                            @csrf
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="category">Category</label>
-                                <select class="form-control" id="category" required>
-                                    <option value="">Select Category</option>
-                                    <option value="fiction">Novel</option>
-                                    <option value="education">Education</option>
-                                    <option value="health">Health</option>
-                                    <!-- Add more options as needed -->
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                Add Sub Category
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>--}
 
     {{-- <!-- Category List -->
     <ul class="list-group">
