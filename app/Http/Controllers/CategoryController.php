@@ -54,4 +54,4 @@ class CategoryController extends Controller
         return redirect()->route('management.categories.index')
                          ->with('success', 'Category deleted successfully.');
     }
-    
+}   

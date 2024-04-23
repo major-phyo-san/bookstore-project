@@ -22,6 +22,7 @@
         <table class="table" id="bookTable">
             <thead>
                 <tr>
+                    <th>Book ID</th> 
                     <th>Title</th>
                     <th>Author</th>
                     <th>Category</th>
@@ -31,6 +32,7 @@
             <tbody id="tableBody">
                 <!-- Book data will be dynamically populated here -->
                 <tr>
+                    <td>001</td>
                     <td>Interstellar war</td>
                     <td>John</td>
                     <td>Fiction</td>
@@ -40,6 +42,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>002</td>
                     <td>Falling for you</td>
                     <td>Susan</td>
                     <td>Romance</td>
@@ -49,6 +52,7 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>003</td>
                     <td>Fighting for the country</td>
                     <td>Andrew</td>
                     <td>Action</td>
