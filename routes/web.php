@@ -18,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/management', function () {
-    return view('management.index');
+Route::get('/management/sub-categories', function () {
+    return view('management.sub-categories.index');
 });
 
 Route::get('/management/books', function () {
