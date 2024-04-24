@@ -29,24 +29,6 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <!-- Static rows for sample categories -->
-                {{-- <tr>
-                    <td>English</td>
-                    <td>Education</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>Exercises</td>
-                    <td>Health</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr> --}}
                 <!-- Dynamic rows for subcategories -->
                 @foreach ($subcategories as $subcategory)
                     <tr>
@@ -104,25 +86,5 @@
         </div>
     </div>
 </div>
-
-
-    {{-- <!-- Category List -->
-    <ul class="list-group">
-        @foreach ($categories as $category)
-            <li class="list-group-item">
-                {{ $category->name }}
-                <div class="float-right">
-                    <!-- Edit Button -->
-                    <a href="{{ route('management.books.categories.edit', $category->id) }}" class="btn btn-sm btn-info">Edit</a>
-                    <!-- Delete Button -->
-                    <form action="{{ route('management.books.categories.destroy', $category->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
-                    </form>
-                </div>
-            </li>
-        @endforeach
-    </ul> --}}
 
 @endsection
