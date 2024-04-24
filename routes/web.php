@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\GenresController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +46,11 @@ Route::prefix('management')->name('management.')->group(function () {
     });
 });
 
-
-Route::delete('/management/subcategories/delete/{id}', 'SubcategoryController@deleteStatic')->name('management.subcategories.delete-static');
-
+Route::prefix('management')->name('management.')->group(function () {
+    Route::prefix('genres')->name('genres.')->group(function () {
+        Route::get('/', [GenresController::class, 'index'])->name('index');
+        Route::post('/', [GenresController::class, 'store'])->name('store');
+        Route::put('/{category}', [GenresController::class, 'update'])->name('update');
+        Route::delete('/{category}', [GenresController::class, 'destroy'])->name('destroy');
+    });
+});

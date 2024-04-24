@@ -26,6 +26,7 @@
                             @yield("body-content")
                             @yield("categories-content")
                             @yield("sub-categories-content")
+                            @yield("genres-content")
                         </div>
                     </div>
                 </div>
