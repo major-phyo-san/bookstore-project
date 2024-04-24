@@ -85,7 +85,7 @@
                                     <input type="text" id="editGenreName{{ $genre->id }}" name="name" class="form-control" value="{{ old('name', $genre->name) }}" data-original-value="{{ old('name', $genre->name) }}">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Update</button>
-                                <button type="button" class="btn btn-secondary" onclick="resetEditForm({{ $genre->id }})">Cancel</button>
+                                <button type="button" class="btn btn-secondary" onclick="resetEditGenreForm({{ $genre->id }})">Cancel</button>
                             </form>
                         </div>
                     </div>
