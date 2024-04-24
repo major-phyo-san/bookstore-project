@@ -23,7 +23,7 @@
         <table class="table" id="categoryTable">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
