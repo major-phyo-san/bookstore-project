@@ -47,9 +47,11 @@ class GenresController extends Controller
 
     public function destroy(Genre $genre)
     {
+        // dd($genre);
         $genre->delete();
 
         return redirect()->route('management.genres.index')
                          ->with('success', 'Genre deleted successfully.');
     }
 }
+

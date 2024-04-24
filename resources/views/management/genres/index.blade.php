@@ -36,11 +36,11 @@
 
                             <form action="{{ route('management.genres.destroy', $genre->id) }}" method="POST" class="d-inline">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this genre?')">
+                                @method('DELETE')  <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this genre?')">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </form>
+                            
                         </td>
                     </tr>
                 @endforeach

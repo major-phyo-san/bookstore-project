@@ -50,7 +50,7 @@ Route::prefix('management')->name('management.')->group(function () {
     Route::prefix('genres')->name('genres.')->group(function () {
         Route::get('/', [GenresController::class, 'index'])->name('index');
         Route::post('/', [GenresController::class, 'store'])->name('store');
-        Route::put('/{category}', [GenresController::class, 'update'])->name('update');
-        Route::delete('/{category}', [GenresController::class, 'destroy'])->name('destroy');
+        Route::put('/{genre}', [GenresController::class, 'update'])->name('update');
+        Route::delete('/{genre}', [GenresController::class, 'destroy'])->name('destroy');
     });
 });
