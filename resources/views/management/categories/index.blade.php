@@ -70,25 +70,27 @@
         </div>
 
         <!-- Edit Modal -->
-        <div class="modal fade" id="editModal{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="editModal{{ $category->id }}Label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <!-- Edit Form -->
-                        <form id="editCategoryForm" action="{{ route('management.categories.update', $category->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <!-- Use Laravel's form model binding to populate fields -->
-                            <div class="form-group">
-                                <label for="editCategoryName{{ $category->id }}">Name</label>
-                                <input type="text" id="editCategoryName{{ $category->id }}" name="name" class="form-control" value="{{ old('name', $category->name) }}">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                            <button type="button" class="btn btn-secondary" onclick="hideEditModal({{ $category->id }})">Cancel</button>
-                        </form>
+        @foreach ($categories as $category)
+            <div class="modal fade" id="editModal{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="editModal{{ $category->id }}Label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <!-- Edit Form -->
+                            <form id="editCategoryForm" action="{{ route('management.categories.update', $category->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <!-- Use Laravel's form model binding to populate fields -->
+                                <div class="form-group">
+                                    <label for="editCategoryName{{ $category->id }}">Name</label>
+                                    <input type="text" id="editCategoryName{{ $category->id }}" name="name" class="form-control" value="{{ old('name', $category->name) }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="button" class="btn btn-secondary" onclick="hideEditModal({{ $category->id }})">Cancel</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 @endsection

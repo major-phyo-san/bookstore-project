@@ -13,14 +13,6 @@ document.getElementById("addButton").addEventListener("click", function() {
     $('#addSubCategoryModal').modal('show');
 });
 
-// $(document).ready(function() {
-//     $('.edit-btn').click(function() {
-//         var modalId = $(this).attr('data-target');
-//         $(modalId).modal('show');
-//     });
-// });
-
-
 // form for book
 document.getElementById("addBookForm").addEventListener("submit", function(event) {
     event.preventDefault();
