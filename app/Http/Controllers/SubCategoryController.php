@@ -12,13 +12,13 @@ class SubCategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $subcategories = SubCategory::all(); // Corrected variable name
-        return view('management.subcategories.index', compact('subcategories')); // Corrected variable name
+        $subcategories = SubCategory::all();
+        return view('management.subcategories.index', compact(['subcategories', 'categories']));
     }
 
     public function store(Request $request)
-    {   
-        dd($request->all());
+    {
+        //  dd($request->all());
         $validatedData = $request->validate([
             'name' => 'required|string|max:255|unique:sub_categories',
             'category_id' => 'required|exists:categories,id'
@@ -31,7 +31,7 @@ class SubCategoryController extends Controller
 
         return redirect()->route('management.subcategories.index')->with('success', 'Subcategory created successfully.');
     }
-    
+
     public function edit(SubCategory $subCategory)
     {
         return view('management.subcategories.edit', compact('subCategory'));
@@ -50,7 +50,7 @@ class SubCategoryController extends Controller
     }
 
     public function destroy(SubCategory $subCategory)
-    {   
+    {
         $subCategory->delete();
 
         return redirect()->route('management.subcategories.index')

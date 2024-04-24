@@ -46,4 +46,5 @@ Route::prefix('management')->name('management.')->group(function () {
 });
 
 
+Route::delete('/management/subcategories/delete/{id}', 'SubcategoryController@deleteStatic')->name('management.subcategories.delete-static');
 
