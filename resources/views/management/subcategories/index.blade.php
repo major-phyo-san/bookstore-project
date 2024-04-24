@@ -30,13 +30,13 @@
             </thead>
             <tbody id="tableBody">
                 <!-- Static rows for sample categories -->
-                <tr>
+                {{-- <tr>
                     <td>English</td>
                     <td>Education</td>
                     <td>
                         <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
-                        
+
                     </td>
                 </tr>
                 <tr>
@@ -46,7 +46,7 @@
                         <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
                     </td>
-                </tr>
+                </tr> --}}
                 <!-- Dynamic rows for subcategories -->
                 @foreach ($subcategories as $subcategory)
                     <tr>
@@ -68,7 +68,7 @@
             </tbody>
         </table>
     </div>
-    
+
 <!-- Add Sub Category Modal -->
 <div class="modal fade" id="addSubCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -85,11 +85,14 @@
                         <label for="category">Category</label>
                         <!-- Dropdown for selecting the category -->
                         <select class="form-control" id="category" name="category_id" required>
-                            <option value="">Select Category</option>
+                            <option value="" disabled>Select Category</option>
                             <!-- Static options -->
-                            <option value="fiction">Novel</option>
+                            @foreach ($categories as $cateogry)
+                                <option value="{{$cateogry->id}}">{{ $cateogry->name }}</option>
+                            @endforeach
+                            {{-- <option value="fiction">Novel</option>
                             <option value="education">Education</option>
-                            <option value="health">Health</option>
+                            <option value="health">Health</option> --}}
                             <!-- Add dynamic options here if needed -->
                         </select>
                     </div>
