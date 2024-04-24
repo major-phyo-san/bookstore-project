@@ -10,6 +10,7 @@ document.getElementById("addButton").addEventListener("click", function() {
     $('#addBookModal').modal('show');
     $('#addCategoryModal').modal('show');
     $('#addSubCategoryModal').modal('show');
+    $('#addGenreModal').modal('show');
 });
 
 
@@ -89,6 +90,45 @@ function resetEditSubcategoryForm(subcategoryId) {
 // Function to store original form values when modal is opened
 $('#editSubcategoryModal{{ $subcategory->id }}').on('show.bs.modal', function (event) {
     var inputField = $(this).find('#editSubcategoryName{{ $subcategory->id }}');
+    inputField.attr('data-original-value', inputField.val());
+});
+
+
+// Modal for adding Genre
+document.getElementById("addGenreForm").addEventListener('submit', function(event) {
+    event.preventDefault();
+    var name = document.getElementById("name").value;
+    var newRow = document.getElementById("tableBody").insertRow();
+    newRow.innerHTML = "<td>" + name + "</td><td>" +
+                        "<button class='btn btn-sm btn-primary edit-btn'><i class='fa fa-edit'></i></button> " +
+                        "<button class='btn btn-sm btn-danger delete-btn'><i class='fa fa-trash'></i></button>" +
+                        "</td>";
+
+    // Hide the modal
+    $('#addGenreModal').modal('hide');
+    // Reset the form fields
+    document.getElementById("addGenreForm").reset();
+    newRow.querySelector(".edit-btn").addEventListener("click", function() {
+        // Handle edit button click
+        console.log("Edit button clicked");
+    });
+});
+
+// Function to show the edit modal for genre
+function showEditGenreModal(genreId) {
+    $('#editModal' + genreId).modal('show'); // Show the modal
+}
+
+// Function to reset form fields to their original values when canceled for genre
+function resetEditGenreForm(genreId) {
+    var originalValue = $('#editGenreName' + genreId).data('originalValue');
+    $('#editGenreName' + genreId).val(originalValue);
+    $('#editModal' + genreId).modal('hide');
+}
+
+// Function to store original form values when modal is opened for genre
+$('#editModal{{ $genre->id }}').on('show.bs.modal', function (event) {
+    var inputField = $(this).find('#editGenreName{{ $genre->id }}');
     inputField.attr('data-original-value', inputField.val());
 });
 
