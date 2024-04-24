@@ -36,6 +36,7 @@
                     <td>
                         <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
                         <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -53,7 +54,14 @@
                         <td>{{ $subcategory->category->name }}</td>
                         <td>
                             <button class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button>
+                            {{-- <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button> --}}
+                            <form action="{{ route('management.subcategories.destroy', $subcategory->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger delete-btn" onclick="return confirm('Are you sure you want to delete this category?')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -6,8 +6,6 @@
             <li><a href="{{ route('management.categories.index') }}">Categories</a></li>
             <li><a href="{{ route('management.subcategories.index') }}">Sub Categories</a></li>
             <li><a href="#">Genres</a></li>
-        
-
 
         </ul>
     </div>
