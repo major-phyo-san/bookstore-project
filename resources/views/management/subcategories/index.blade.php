@@ -85,6 +85,29 @@
             </div>
         </div>
     </div>
+    <!-- Edit Modal -->
+    @foreach ($subcategories as $subcategory)
+        <div class="modal fade" id="editModal{{ $subcategory->id }}" tabindex="-1" role="dialog" aria-labelledby="editModal{{ $subcategory->id }}Label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- Edit Form -->
+                        <form id="editSubCategoryForm{{ $subcategory->id }}" action="{{ route('management.subcategories.update', $category->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <!-- Use Laravel's form model binding to populate fields -->
+                            <div class="form-group">
+                                <label for="editSubCategoryName{{ $subcategory->id }}">Name</label>
+                                <input type="text" id="editSubCategoryName{{ $subcategory->id }}" name="name" class="form-control" value="{{ old('name', $subcategory->name) }}" data-original-value="{{ old('name', $subcategory->name) }}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetEditForm({{ $subcategory->id }})">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 </div>
 
 @endsection
