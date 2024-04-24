@@ -50,7 +50,7 @@
 
         <!-- Add Category Modal -->
         <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
                         <!-- Form for adding a new category will go here -->
@@ -72,7 +72,7 @@
         <!-- Edit Modal -->
         @foreach ($categories as $category)
             <div class="modal fade" id="editModal{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="editModal{{ $category->id }}Label" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
                             <!-- Edit Form -->

@@ -12,30 +12,6 @@ document.getElementById("addButton").addEventListener("click", function() {
     $('#addSubCategoryModal').modal('show');
 });
 
-// Modal for add Book
-document.getElementById("addBookForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    var title = document.getElementById("title").value;
-    var author = document.getElementById("author").value;
-    var category = document.getElementById("category").value;
-    var newRow = document.getElementById("tableBody").insertRow();
-    newRow.innerHTML = "<td>" + title + "</td><td>" + author + "</td><td>" + category + "</td>" +
-                        "<td>" +
-                        "<button class='btn btn-sm btn-primary edit-btn'><i class='fa fa-edit'></i></button> " +
-                        "<button class='btn btn-sm btn-danger delete-btn'><i class='fa fa-trash'></i></button>" +
-                        "</td>";
-
-    // Hide the modal
-    $('#addBookModal').modal('hide');
-    // Reset the form fields
-    document.getElementById("addBookForm").reset();
-    newRow.querySelector(".edit-btn").addEventListener("click", function() {
-        // Handle edit button click
-        console.log("Edit button clicked");
-    });
-
-});
-
 
 // Modal for add Category
 document.getElementById("addCategoryForm").addEventListener('submit', function(event) {
@@ -98,4 +74,46 @@ document.getElementById("addSubCategoryForm").addEventListener('submit', functio
 
 });
 
+// Function to show the edit modal
+function showEditSubcategoryModal(subcategoryId) {
+    $('#editSubcategoryModal' + subcategoryId).modal('show'); // Show the modal
+}
 
+// Function to reset form fields to their original values when canceled
+function resetEditSubcategoryForm(subcategoryId) {
+    var originalValue = $('#editSubcategoryName' + subcategoryId).data('originalValue');
+    $('#editSubcategoryName' + subcategoryId).val(originalValue);
+    $('#editSubcategoryModal' + subcategoryId).modal('hide');
+}
+
+// Function to store original form values when modal is opened
+$('#editSubcategoryModal{{ $subcategory->id }}').on('show.bs.modal', function (event) {
+    var inputField = $(this).find('#editSubcategoryName{{ $subcategory->id }}');
+    inputField.attr('data-original-value', inputField.val());
+});
+
+
+
+// Modal for add Book
+document.getElementById("addBookForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var title = document.getElementById("title").value;
+    var author = document.getElementById("author").value;
+    var category = document.getElementById("category").value;
+    var newRow = document.getElementById("tableBody").insertRow();
+    newRow.innerHTML = "<td>" + title + "</td><td>" + author + "</td><td>" + category + "</td>" +
+                        "<td>" +
+                        "<button class='btn btn-sm btn-primary edit-btn'><i class='fa fa-edit'></i></button> " +
+                        "<button class='btn btn-sm btn-danger delete-btn'><i class='fa fa-trash'></i></button>" +
+                        "</td>";
+
+    // Hide the modal
+    $('#addBookModal').modal('hide');
+    // Reset the form fields
+    document.getElementById("addBookForm").reset();
+    newRow.querySelector(".edit-btn").addEventListener("click", function() {
+        // Handle edit button click
+        console.log("Edit button clicked");
+    });
+
+});
