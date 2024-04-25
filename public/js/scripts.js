@@ -7,10 +7,7 @@
 
 // "Add" button click
 document.getElementById("addButton").addEventListener("click", function() {
-    $('#addBookModal').modal('show');
     $('#addCategoryModal').modal('show');
-    $('#addSubCategoryModal').modal('show');
-    $('#addGenreModal').modal('show');
 });
 
 

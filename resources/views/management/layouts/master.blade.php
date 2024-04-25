@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/styles.css" />
     <!-- FontAwsome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -24,9 +24,6 @@
 
                         <div class="mb-3">
                             @yield("body-content")
-                            @yield("categories-content")
-                            @yield("sub-categories-content")
-                            @yield("genres-content")
                         </div>
                     </div>
                 </div>
@@ -42,6 +39,7 @@
     crossorigin="anonymous"></script>
     <!-- JQuery and JavaScript -->
     <script src="/js/jquery.js"></script>
-    <script src="/js/scripts.js"></script>
+    {{-- <script src="/js/scripts.js"></script> --}}
+    @yield("script-index")
 </body>
 </html>

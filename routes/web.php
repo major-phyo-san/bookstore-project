@@ -19,10 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/management/sub-categories', function () {
-    return view('management.sub-categories.index');
-});
-
 Route::get('/management/books', function () {
     return view('management.books.index');
 });
