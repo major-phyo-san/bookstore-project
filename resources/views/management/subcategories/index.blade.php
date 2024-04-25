@@ -6,13 +6,13 @@
         <div class="input-group col-3">
             <input type="text" class="form-control" id="searchInput" placeholder="Search..." />
             <div class="input-group-append">
-                <button class="btn btn-primary" type="button" onclick="search()">
+                <button id="search-btn" class="btn btn-primary" type="button">
                     <i class="fa fa-search"></i>
                 </button>
             </div>
         </div>
         <div class="add-row">
-            <button type="button" class="btn btn-primary" id="addButton">
+            <button type="button" class="btn btn-primary" id="add-btn">
                 <i class="fa fa-plus"></i>
             </button>
         </div>
@@ -35,12 +35,8 @@
                         <td>{{ $subcategory->name }}</td>
                         <td>{{ $subcategory->category->name }}</td>
                         <td>
-                            <button id="editSubcategory" class="btn btn-sm btn-primary edit-btn"
-                                onclick="showEditSubcategoryModal({{ $subcategory->id }})"><i
-                                    class="fa fa-edit"></i></button>
-                            {{-- <button class="btn btn-sm btn-danger delete-btn"><i class="fa fa-trash"></i></button> --}}
-                            <form action="{{ route('management.subcategories.destroy', $subcategory->id) }}" method="POST"
-                                class="d-inline">
+                            <button id="editSubcategory" class="btn btn-sm btn-primary edit-btn" data-id="{{ $subcategory->id }}" data-name="{{ $subcategory->name }}"><i class="fa fa-edit"></i></button>
+                            <form action="{{ route('management.subcategories.destroy', $subcategory->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger delete-btn"
@@ -60,7 +56,7 @@
         aria-labelledby="addSubCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     <!-- Form for adding a new subcategory -->
                     <form id="addSubCategoryForm" action="{{ route('management.subcategories.store') }}" method="POST">
                         @csrf
@@ -87,74 +83,80 @@
             </div>
         </div>
         <!-- Edit Modal -->
-        @foreach ($subcategories as $subcategory)
-            <div class="modal fade" id="editSubcategoryModal{{ $subcategory->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="editSubcategoryModal{{ $subcategory->id }}Label" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <!-- Edit Form -->
-                            <form id="editSubcategoryForm{{ $subcategory->id }}"
-                                action="{{ route('management.subcategories.update', $subcategory->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <!-- Use Laravel's form model binding to populate fields -->
-                                <div class="form-group">
-                                    <label for="editSubcategoryName{{ $subcategory->id }}">Name</label>
-                                    <input type="text" id="editSubcategoryName{{ $subcategory->id }}" name="name"
-                                        class="form-control" value="{{ old('name', $subcategory->name) }}"
-                                        data-original-value="{{ old('name', $subcategory->name) }}">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Update</button>
-                                <button type="button" class="btn btn-secondary"
-                                    onclick="resetEditSubcategoryForm({{ $subcategory->id }})">Cancel</button>
-                            </form>
+        <div class="modal fade" id="editSubCategoryModal" tabindex="-1" role="dialog"
+        aria-labelledby="editSubCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- Edit Form -->
+                    <form id="editSubCategoryForm"
+                        action="{{ route('management.subcategories.update', $subcategory->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <!-- Use Laravel's form model binding to populate fields -->
+                        <div class="form-group">
+                            <label for="editSubCategoryName">Name</label>
+                            <input type="text" id="editGenreName" name="name" class="form-control">
                         </div>
-                    </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-secondary">Cancel</button>
+                    </form>
                 </div>
             </div>
-        @endforeach
+        </div>
+    </div>
     </div>
 @endsection
 
 @section('script-index')
     <script>
-        // "Add" button click
-        document.getElementById("addButton").addEventListener("click", function() {
-            $('#addSubCategoryModal').modal('show');
+        $(document).ready(function() {
+            // "Add" button click
+            $("#add-btn").click(function() {
+                $('#addSubCategoryModal').modal('show');
+            });
+            var subcategoryId = null;
+            var subcategoryName = null;
+            // Show edit modal
+            $(document).on("click", ".edit-btn", function() {
+                subcategoryId = $(this).data('id');
+                subcategoryName = $(this).data('name');
+                $("#editSubCategoryModal").modal('show');
+            });
+
         });
-        document.getElementById("addSubCategoryForm").addEventListener('submit', function(event) {
-            event.preventDefault();
-            var name = document.getElementById("name").value;
-            var category = document.getElementById("category").value;
-            var newRow = document.getElementById("tableBody").insertRow();
-            newRow.innerHTML = "<td>" + name + "</td><td>" + category + "</td><td>" +
-                "<button class='btn btn-sm btn-primary edit-btn'><i class='fa fa-edit'></i></button> " +
-                "<button class='btn btn-sm btn-danger delete-btn'><i class='fa fa-trash'></i></button>" +
-                "</td>";
+        // document.getElementById("addSubCategoryForm").addEventListener('submit', function(event) {
+        //     event.preventDefault();
+        //     var name = document.getElementById("name").value;
+        //     var category = document.getElementById("category").value;
+        //     var newRow = document.getElementById("tableBody").insertRow();
+        //     newRow.innerHTML = "<td>" + name + "</td><td>" + category + "</td><td>" +
+        //         "<button class='btn btn-sm btn-primary edit-btn'><i class='fa fa-edit'></i></button> " +
+        //         "<button class='btn btn-sm btn-danger delete-btn'><i class='fa fa-trash'></i></button>" +
+        //         "</td>";
 
-            // Hide the modal
-            $('#addSubCategoryModal').modal('hide');
-            // Reset the form fields
-            document.getElementById("addSubCategoryForm").reset();
-        });
+        //     // Hide the modal
+        //     $('#addSubCategoryModal').modal('hide');
+        //     // Reset the form fields
+        //     document.getElementById("addSubCategoryForm").reset();
+        // });
 
-        // Function to show the edit modal
-        function showEditSubcategoryModal(subcategoryId) {
-            $('#editSubcategoryModal' + subcategoryId).modal('show'); // Show the modal
-        }
+        // // Function to show the edit modal
+        // function showEditSubcategoryModal(subcategoryId) {
+        //     $('#editSubcategoryModal' + subcategoryId).modal('show'); // Show the modal
+        // }
 
-        // Function to reset form fields to their original values when canceled
-        function resetEditSubcategoryForm(subcategoryId) {
-            var originalValue = $('#editSubcategoryName' + subcategoryId).data('originalValue');
-            $('#editSubcategoryName' + subcategoryId).val(originalValue);
-            $('#editSubcategoryModal' + subcategoryId).modal('hide');
-        }
+        // // Function to reset form fields to their original values when canceled
+        // function resetEditSubcategoryForm(subcategoryId) {
+        //     var originalValue = $('#editSubcategoryName' + subcategoryId).data('originalValue');
+        //     $('#editSubcategoryName' + subcategoryId).val(originalValue);
+        //     $('#editSubcategoryModal' + subcategoryId).modal('hide');
+        // }
 
-        // Function to store original form values when modal is opened
-        $('#editSubcategoryModal{{ $subcategory->id }}').on('show.bs.modal', function(event) {
-            var inputField = $(this).find('#editSubcategoryName{{ $subcategory->id }}');
-            inputField.attr('data-original-value', inputField.val());
-        });
+        // // Function to store original form values when modal is opened
+        // $('#editSubcategoryModal{{ $subcategory->id }}').on('show.bs.modal', function(event) {
+        //     var inputField = $(this).find('#editSubcategoryName{{ $subcategory->id }}');
+        //     inputField.attr('data-original-value', inputField.val());
+        // });
     </script>
 @endsection
