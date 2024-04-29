@@ -3,6 +3,7 @@
 @section('body-content')
     <!-- Search bar -->
     <div class="mb-3">
+        <h5>Book Lists</h5>
         <div class="input-group col-3">
             <input type="text" class="form-control" id="searchInput" placeholder="Search..." />
             <div class="input-group-append">

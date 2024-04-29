@@ -3,6 +3,7 @@
 @section('body-content')
     <!-- Search bar -->
     <div class="mb-3">
+        <h5>Genre Lists</h5>
         <div class="input-group col-3">
             <input type="text" class="form-control" id="searchInput" placeholder="Search..." />
             <div class="input-group-append">
@@ -23,6 +24,7 @@
         <table class="table" id="genreTable">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Genre</th>
                     <th>Actions</th>
                 </tr>
@@ -31,9 +33,10 @@
                 @foreach ($genres as $genre)
                     <!-- Loop through genres -->
                     <tr>
-                        <td>{{ $genre->name }}</td>
+                        <td class="genre-id">{{ $genre->id }}</td>
+                        <td class="genre-name">{{ $genre->name }}</td>
                         <td>
-                            <button id="editGenre" class="btn btn-sm btn-primary edit-btn" data-id="{{ $genre->id }}" data-name="{{ $genre->name }}"><i class="fa fa-edit"></i></button>
+                            <button type="button" id="editGenre" class="btn btn-sm btn-primary edit-btn" data-id="{{ $genre->id }}" data-name="{{ $genre->name }}"><i class="fa fa-edit"></i></button>
                             <form action="{{ route('management.genres.destroy', $genre->id) }}" method="POST"
                                 class="d-inline">
                                 @csrf
@@ -85,11 +88,12 @@
                                 @csrf
                                 @method('PUT')
                                 <!-- Use Laravel's form model binding to populate fields -->
+                                <input type="hidden" id="editGenreId" name="id" value="{{ $genre->id }}">
                                 <div class="form-group">
-                                    <label for="editGenreName{{ $genre->id }}">Name</label>
-                                    <input type="text" id="editGenreName" name="name" class="form-control">
+                                    <label for="editGenreName">Name</label>
+                                    <input type="text" id="editGenreName" name="name" class="form-control" value="{{ $genre->name }}">
                                 </div>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" id="update-btn" class="btn btn-primary">Update</button>
                                 <button type="button" class="btn btn-secondary">Cancel</button>
                             </form>
                         </div>
@@ -106,47 +110,20 @@
             $("#add-btn").click(function() {
                 $('#addGenreModal').modal('show');
             });
-            var genreId = null;
-            var genreName = null;
             // Show edit modal
             $(document).on("click", ".edit-btn", function() {
-                genreId = $(this).data('id');
-                genreName = $(this).data('name');
+                var genreId = $(this).data('id');
+                var genreName = $(this).data('name');
+                $("#editGenreId").val(genreId);
+                $("#editGenreName").val(genreName);
                 $("#editGenreModal").modal('show');
             });
+            // Handle form submission
+            $("#update-btn").click(function() {
+                $("#editGenreForm").submit();
+            });
+
 
         });
-        // document.getElementById("addGenreForm").addEventListener('submit', function(event) {
-        //     event.preventDefault();
-        //     var name = document.getElementById("name").value;
-        //     var newRow = document.getElementById("tableBody").insertRow();
-        //     newRow.innerHTML = "<td>" + name + "</td><td>" +
-        //         "<button class='btn btn-sm btn-primary edit-btn'><i class='fa fa-edit'></i></button> " +
-        //         "<button class='btn btn-sm btn-danger delete-btn'><i class='fa fa-trash'></i></button>" +
-        //         "</td>";
-
-        //     // Hide the modal
-        //     $('#addGenreModal').modal('hide');
-        //     // Reset the form fields
-        //     document.getElementById("addGenreForm").reset();
-        // });
-
-        // // Function to show the edit modal for genre
-        // function showEditGenreModal(genreId) {
-        //     $('#editModal' + genreId).modal('show'); // Show the modal
-        // }
-
-        // // Function to reset form fields to their original values when canceled for genre
-        // function resetEditGenreForm(genreId) {
-        //     var originalValue = $('#editGenreName' + genreId).data('originalValue');
-        //     $('#editGenreName' + genreId).val(originalValue);
-        //     $('#editModal' + genreId).modal('hide');
-        // }
-
-        // // Function to store original form values when modal is opened for genre
-        // $('#editModal{{ $genre->id }}').on('show.bs.modal', function(event) {
-        //     var inputField = $(this).find('#editGenreName{{ $genre->id }}');
-        //     inputField.attr('data-original-value', inputField.val());
-        // });
     </script>
 @endsection

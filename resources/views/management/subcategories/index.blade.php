@@ -3,6 +3,7 @@
 @section('body-content')
     <!-- Search bar -->
     <div class="mb-3">
+        <h5>Sub-category Lists</h5>
         <div class="input-group col-3">
             <input type="text" class="form-control" id="searchInput" placeholder="Search..." />
             <div class="input-group-append">
@@ -23,7 +24,8 @@
         <table class="table" id="subcategoryTable">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>#</th>
+                    <th>Sub-category</th>
                     <th>Category</th>
                     <th>Actions</th>
                 </tr>
@@ -32,6 +34,7 @@
                 <!-- Dynamic rows for subcategories -->
                 @foreach ($subcategories as $subcategory)
                     <tr>
+                        <td>{{ $subcategory->id }}</td>
                         <td>{{ $subcategory->name }}</td>
                         <td>{{ $subcategory->category->name }}</td>
                         <td>
@@ -94,9 +97,10 @@
                         @csrf
                         @method('PUT')
                         <!-- Use Laravel's form model binding to populate fields -->
+                        <input type="hidden" id="editSubCategoryId" name="id" value="{{ $subcategory->id }}">
                         <div class="form-group">
                             <label for="editSubCategoryName">Name</label>
-                            <input type="text" id="editGenreName" name="name" class="form-control">
+                            <input type="text" id="editGenreName" name="name" class="form-control" value="{{ $subcategory->name }}">
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                         <button type="button" class="btn btn-secondary">Cancel</button>

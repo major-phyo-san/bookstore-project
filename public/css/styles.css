@@ -69,6 +69,10 @@
 hr {
     padding: 10px;
 }
+
+h5 {
+    margin-bottom: 20px;
+}
 /* CSS styles for the search bar */
 
 .search-container input[type=text] {
